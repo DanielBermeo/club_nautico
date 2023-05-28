@@ -52,10 +52,11 @@
 						<Label layoutX="205.0" layoutY="345.0" text="Telefono" />
 						<TextField fx:id="txtTelefono_Us" layoutX="206.0" layoutY="362.0" prefHeight="25.0" prefWidth="181.0" />
 						<Button fx:id="btnEliminarUsuario" layoutX="17.0" layoutY="401.0" mnemonicParsing="false" onAction="#eventoEliminarUsuario" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #F4D9D9; -fx-border-color: #F5A7A7;" text="ELIMINAR USUARIO" />
-						<Button fx:id="btnGuardar_Us" layoutX="461.0" layoutY="401.0" mnemonicParsing="false" onAction="#eventoGuardar_Us" prefHeight="25.0" prefWidth="124.0" text="Guardar Cambios" />
+						<Button fx:id="btnGuardar_Us" layoutX="452.0" layoutY="402.0" mnemonicParsing="false" onAction="#eventoGuardar_Us" prefHeight="25.0" prefWidth="124.0" text="Guardar Cambios" />
 						<RadioButton fx:id="rdbtnPatron_Us" layoutX="413.0" layoutY="379.0" mnemonicParsing="false" onAction="#eventoPatron_Us" text="Patron" />
 						<Button fx:id="btnVerTodos_Us" layoutX="488.0" layoutY="2.0" mnemonicParsing="false" onAction="#eventoVerTodos_Us" prefHeight="11.0" prefWidth="89.0" text="Ver Todos" />
                   <ComboBox fx:id="cmbSocio" layoutX="413.0" layoutY="345.0" prefWidth="150.0" promptText="Socio" />
+                  <Button fx:id="btnCancelarSel_Us" layoutX="314.0" layoutY="402.0" mnemonicParsing="false" onAction="#evntCancelarSel_Us" prefHeight="25.0" prefWidth="125.0" text="Cancelar Seleccion" />
 					</children>
 				</AnchorPane>
 			</content>
@@ -93,6 +94,7 @@
 						<ComboBox fx:id="cmbDueño_Bar" layoutX="315.0" layoutY="364.0" prefHeight="25.0" prefWidth="278.0" />
 						<Label layoutX="17.0" layoutY="347.0" text="Patron" />
 						<Label layoutX="315.0" layoutY="347.0" text="Dueño" />
+                  <Button fx:id="btnCancelarSeleccion_Bar" layoutX="325.0" layoutY="401.0" mnemonicParsing="false" onAction="#evntCancelarSel_Bar" prefHeight="25.0" prefWidth="125.0" text="Cancelar Seleccion" />
 					</children>
 				</AnchorPane>
 			</content>

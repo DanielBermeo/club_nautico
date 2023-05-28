@@ -12,6 +12,17 @@ public class Salida {
 		this.destino = destino;
 		this.matricula = matricula;
 	}
+	
+	
+
+	public Salida(String fecha, String destino, String matricula) {
+		super();
+		this.fecha = fecha;
+		this.destino = destino;
+		this.matricula = matricula;
+	}
+
+
 
 	public int getIdSalida() {
 		return idSalida;

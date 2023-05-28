@@ -9,10 +9,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import fes.aragon.modelo.Amarre;
+import fes.aragon.modelo.AmarreOcupado;
 import fes.aragon.modelo.Barco;
 import fes.aragon.modelo.Entrada;
 import fes.aragon.modelo.Salida;
 import fes.aragon.modelo.Usuario;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 public class Conexion {
 
@@ -346,7 +351,7 @@ public class Conexion {
 	public int getIdPatron(Usuario patron) throws SQLException{
 
 		int id = -1;
-		String query = "SELECT id_sco FROM socios where id_cto = " + patron.getIdContacto();
+		String query = "SELECT id_ptn FROM patrones where id_cto = " + patron.getIdContacto();
 		Statement st = conexion.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		if (rs.next()) {
@@ -370,9 +375,25 @@ public class Conexion {
 		return datos;
 	}
 	
+	public ArrayList<AmarreOcupado> getAmarresOcupados() throws SQLException {
+		String query = "Select * from entradas  a, amarres b, barcos c where a.num_mta = c.num_matricula and a.num_ams = b.num_amarres and b.disponibilidad = 0;";
+		Statement st = conexion.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		
+		ArrayList<AmarreOcupado> datos = new ArrayList<>();
+		while (rs.next()) {
+			datos.add(new AmarreOcupado(new Amarre(rs.getInt(5), rs.getString(6), rs.getDouble(7), rs.getInt(8)), 
+					new Barco(rs.getString(9), rs.getString(10), rs.getInt(11), rs.getInt(12))));
+		}
+		rs.close();
+		st.close();
+
+		return datos;
+	}
+	
 	public void registrarEntrada(Barco barco, Amarre amarre, String fecha) throws SQLException {
 		String query = "INSERT INTO entradas VALUES ( null, '" + fecha + "' , " + amarre.getNumAmarre() + ","+ barco.getMatricula()+ " )" ;
-		cambioEstAmarre(amarre.getNumAmarre());
+		ocuparAmarre(amarre.getNumAmarre());
 		Statement st = conexion.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		
@@ -382,7 +403,7 @@ public class Conexion {
 		
 	}
 
-	private void cambioEstAmarre(int numAmarre) throws SQLException {
+	private void ocuparAmarre(int numAmarre) throws SQLException {
 		// TODO Auto-generated method stub
 		String query = "UPDATE amarres SET disponibilidad = 0 where num_amarres = " + numAmarre;
 		Statement st = conexion.createStatement();
@@ -390,6 +411,7 @@ public class Conexion {
 		st.close();
 		rs.close();
 	}
+	
 	
 	public void insertarAmarre(Amarre a) throws SQLException {
 		
@@ -454,9 +476,92 @@ public class Conexion {
 		return disponibilidad;
 	}
 
-	public void cerrarConexion() throws SQLException {
-		conexion.close();
+	public void registrarSalida(Salida salida, AmarreOcupado aoc) throws SQLException {
+		String query = "INSERT INTO salidas VALUES  (null, '" + salida.getFecha() + "' , '" + salida.getDestino() + "' , '" + salida.getMatricula()
+				+ "')" ;
+		Statement st = conexion.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		liberarAmarre(aoc.getAmarre());
+		
+		
+		st.close();
+		rs.close();
+		
 	}
+	
+	private  void liberarAmarre(Amarre a) throws SQLException {
+		String query = "UPDATE amarres SET disponibilidad = NULL where num_amarres = " + a.getNumAmarre();
+		Statement st = conexion.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		st.close();
+		rs.close();
+	}
+	
+	public Usuario getSocioDePatron(int idPatron) throws SQLException {
+		String query = "SELECT * FROM contactos a , socios b, patrones c where c.id_sco = b.id_sco and a.id_cto = b.id_cto and c.id_ptn = " + idPatron;
+		Statement st = conexion.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		Usuario u = null;
+		while (rs.next()) {
+			u = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+					rs.getString(6));
+		}
+		rs.close();
+		st.close();
+
+		return u;
+	}
+	
+	
+
+	public void actualizarUsuario(Usuario u) throws SQLException {
+		String query = "UPDATE contactos "+
+				"SET nombre ='" + u.getNombre()+"',ap_paterno = '"+u.getApPat()+"', ap_materno = '"+u.getApMat()+"', "
+						+ "telefono = '"+u.getTelefono()+"', email = '"+u.getEmail()+"' WHERE id_cto = " +u.getIdContacto();
+		
+		System.out.println(query);
+		Statement st = conexion.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		rs.close();
+		st.close();
+
+		
+	}
+
+	public void eliminarElPatron(Usuario u) throws SQLException {
+		String query = "UPDATE patrones "+
+				"SET id_cto = 0 WHERE id_cto = " + u.getIdContacto();		
+		System.out.println(query);
+		Statement st = conexion.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		rs.close();
+		st.close();
+
+		
+		
+	}
+
+			
+		
+
+		public void actualizarPatron(Usuario u, int idSocio) throws SQLException {
+			// TODO Auto-generated method stub
+			if(getIdSocio(u.getIdContacto())!=idSocio) {
+				String query = "UPDATE patrones "+
+						"SET id_sco = " + idSocio +" WHERE id_cto = " + u.getIdContacto();		
+				System.out.println(query);
+				Statement st = conexion.createStatement();
+				ResultSet rs = st.executeQuery(query);
+				rs.close();
+				st.close();
+			}
+		}
+		
+
+		public void cerrarConexion() throws SQLException {
+			conexion.close();
+		}
+	
 
 	
 

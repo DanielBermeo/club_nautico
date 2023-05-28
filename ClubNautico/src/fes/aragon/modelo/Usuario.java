@@ -111,6 +111,31 @@ public class Usuario {
 		}
 	}
 
+	public boolean daElPatron() {
+		return patron;
+	}
+	
+	public Usuario daElSocio() {
+		Usuario u = null;
+		try {
+			Conexion cnn = new Conexion();
+			if(socio) {
+				return this;
+			}else if(patron) {
+				u = cnn.getSocioDePatron(cnn.getIdPatron(this));
+			}
+			cnn.cerrarConexion();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return u;
+	}
+	
 	public void setPatron() {
 			
 		try {
@@ -124,6 +149,8 @@ public class Usuario {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 
 	@Override

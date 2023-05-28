@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="339.0" prefWidth="399.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controller.RegistrarSalidaController">
+   <children>
+      <Pane layoutY="-7.0" prefHeight="339.0" prefWidth="399.0" style="-fx-background-color: #85A4D6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="26.0" layoutY="118.0" text="Destino" />
+            <TextField fx:id="txtDestino" layoutX="26.0" layoutY="135.0" prefHeight="25.0" prefWidth="364.0" />
+         </children>
+      </Pane>
+      <Label layoutX="24.0" layoutY="24.0" prefHeight="17.0" prefWidth="224.0" text="Registrar Salida de Barco">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cmbBarco" layoutX="24.0" layoutY="83.0" prefHeight="25.0" prefWidth="364.0" />
+      <Label layoutX="24.0" layoutY="66.0" text="Barco" />
+      <Button fx:id="btnCancelar" layoutX="194.0" layoutY="283.0" mnemonicParsing="false" onAction="#aventCancelar" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #F4D9D9; -fx-border-color: #F5A7A7;" text="Cancelar" />
+      <Button fx:id="btnRegistrar" layoutX="292.0" layoutY="283.0" mnemonicParsing="false" onAction="#eventRegistrar" prefHeight="25.0" prefWidth="91.0" text="Registrar" />
+      <ComboBox fx:id="cmbAno" layoutX="248.0" layoutY="234.0" prefHeight="25.0" prefWidth="146.0" />
+      <ComboBox fx:id="cmbMes" layoutX="136.0" layoutY="234.0" prefHeight="25.0" prefWidth="104.0" />
+      <ComboBox fx:id="cmbDia" layoutX="24.0" layoutY="234.0" prefHeight="25.0" prefWidth="104.0" />
+      <Label layoutX="248.0" layoutY="209.0" text="Año" />
+      <Label layoutX="136.0" layoutY="209.0" text="Mes" />
+      <Label layoutX="24.0" layoutY="209.0" text="Día" />
+      <Label layoutX="24.0" layoutY="178.0" text="Fecha de salida">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

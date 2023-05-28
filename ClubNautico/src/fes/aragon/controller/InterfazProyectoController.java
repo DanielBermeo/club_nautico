@@ -6,11 +6,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.imageio.plugins.tiff.GeoTIFFTagSet;
+
 import fes.aragon.modelo.Barco;
 import fes.aragon.modelo.Entrada;
 import fes.aragon.modelo.Salida;
 import fes.aragon.modelo.Usuario;
 import fes.aragon.repository.Conexion;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,6 +38,7 @@ import javafx.stage.StageStyle;
 
 public class InterfazProyectoController implements Initializable {
 
+	Usuario seleccionado;
 	@FXML
     private TableView<Usuario> tblTabla_Us ;
 	
@@ -48,12 +53,17 @@ public class InterfazProyectoController implements Initializable {
     
     @FXML
     private Button btnBuscar_Sal;
+    
+    @FXML
+    private Button btnCancelarSeleccion_Bar;
+    @FXML
+    private Button btnCancelarSel_Us;
 
     @FXML
     private Button btnRegistrarSalida;
 
     @FXML
-    private RadioButton rdbtnPatron_Us;
+    private RadioButton rdbtnPatron_Us = new RadioButton();
 
     @FXML
     private TableColumn<Salida, String> clmDestino_Sal;
@@ -179,7 +189,7 @@ public class InterfazProyectoController implements Initializable {
     private Button btnAgregarNuevo_Bar = new Button();
 
     @FXML
-    private ComboBox<?> cmbSocio;
+    private ComboBox<Usuario> cmbSocio;
 
     @FXML
     private TableColumn<Entrada, String> clmMatricula_Ent;
@@ -256,6 +266,59 @@ public class InterfazProyectoController implements Initializable {
     @FXML
     void eventoSeleccionar_Us(ActionEvent event) {
 
+    	txtNombre_Us.setDisable(false);
+    	txtApellidoPaterno_Us.setDisable(false);
+    	txtApellidoMaterno_Us.setDisable(false);
+    	txtEmail_Us.setDisable(false);
+    	txtTelefono_Us.setDisable(false);
+    	cmbSocio.setDisable(false);
+    	rdbtnPatron_Us.setDisable(false);
+    	
+    	rdbtnPatron_Us.setDisable(true);
+    	Usuario u = tblTabla_Us.getSelectionModel().getSelectedItem();
+    	
+    	seleccionado = u;
+    	txtNombre_Us.setText(u.getNombre());
+    	txtApellidoPaterno_Us.setText(u.getApPat());
+    	txtApellidoMaterno_Us.setText(u.getApMat());
+    	txtEmail_Us.setText(u.getEmail());
+    	txtTelefono_Us.setText(u.getTelefono());
+    	ObservableList<Usuario> listaContactos = FXCollections.observableArrayList();
+		ArrayList<Usuario> lista;
+		try {
+
+			Conexion cnn = new Conexion();
+
+
+			lista = cnn.consultarTodosSocios();
+			listaContactos.add(new Usuario(0, "Este usuario ", "es ", "Socio", "", ""));
+			for (Usuario contacto : lista) {
+				listaContactos.add(contacto);
+			}
+			
+			cmbSocio.setItems(listaContactos);
+			
+			cnn.cerrarConexion();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		if(u.daElSocio()!=null) {
+			cmbSocio.setValue(u.daElSocio());
+		}
+		
+		if (u.daElPatron()) {
+		
+			rdbtnPatron_Us.setDisable(false);
+			rdbtnPatron_Us.setSelected(u.daElPatron());
+		}
+		
+    	
     }
 
     @FXML
@@ -266,6 +329,57 @@ public class InterfazProyectoController implements Initializable {
     @FXML
     void eventoGuardar_Us(ActionEvent event) {
     	
+    	Usuario u = seleccionado;
+    	Conexion cnn;
+    	
+    	seleccionado.setNombre(txtNombre_Us.getText());
+    	seleccionado.setApPat(txtApellidoPaterno_Us.getText());
+    	seleccionado.setApMat(txtApellidoMaterno_Us.getText());
+    	seleccionado.setEmail(txtEmail_Us.getText());
+    	seleccionado.setTelefono(txtTelefono_Us.getText());
+    	
+    	
+		try {
+			cnn = new Conexion();
+			
+			if(rdbtnPatron_Us.isSelected()) {
+	    		if(!u.daElPatron()) {
+	    			cnn.InsertarPatron(u.getIdContacto(), cnn.getIdSocio(cmbSocio.getValue().getIdContacto()));
+	    		}
+	    	}else {
+	    		if(u.daElPatron()) {
+	    			cnn.eliminarElPatron(u);
+	    		}
+	    	}
+			cnn.actualizarPatron(u, cnn.getIdSocio(cmbSocio.getValue().getIdContacto()));
+			cnn.actualizarUsuario(u);
+	    	cnn.cerrarConexion();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+		System.out.println(u);
+		txtNombre_Us.setText("");
+    	txtApellidoPaterno_Us.setText("");
+    	txtApellidoMaterno_Us.setText("");
+    	txtEmail_Us.setText("");
+    	txtTelefono_Us.setText("");
+    	cmbSocio.setValue(null);
+    	rdbtnPatron_Us.setDisable(true);
+    	
+    	txtNombre_Us.setDisable(true);
+    	txtApellidoPaterno_Us.setDisable(true);
+    	txtApellidoMaterno_Us.setDisable(true);
+    	txtEmail_Us.setDisable(true);
+    	txtTelefono_Us.setDisable(true);
+    	cmbSocio.setDisable(true);
+    	rdbtnPatron_Us.setDisable(true);
+    	
+    	seleccionado = null; 
     }
 
     @FXML
@@ -474,11 +588,28 @@ public class InterfazProyectoController implements Initializable {
     @FXML
     void eventoRegistrarSalida(ActionEvent event) {
 
+    	try {
+    		
+			Pane root = (Pane)FXMLLoader.load(getClass().getResource("/fes/aragon/fxml/RegistrarSalida.fxml"));
+			Scene escena = new Scene(root);
+			Stage escenario = new Stage();
+			escenario.setScene(escena);
+			escenario.initStyle(StageStyle.UNDECORATED);
+			escenario.initModality(Modality.APPLICATION_MODAL);
+			escenario.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @FXML
     void eventoLimpiarBusqueda_Sal(ActionEvent event) {
-
+    	txtBuscar_Sal.setText("");
+    	cmbRubroBusqueda_Sal.setValue(null);
+    	cmbFecha_Sal.setValue(null);
+    	tblSalidas.setItems(null);
     }
 
     @FXML
@@ -512,6 +643,22 @@ public class InterfazProyectoController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+    }
+    
+    @FXML
+    void evntCancelarSel_Bar(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void evntCancelarSel_Us(ActionEvent event) {
+    	txtNombre_Us.setText("");
+    	txtApellidoPaterno_Us.setText("");
+    	txtApellidoMaterno_Us.setText("");
+    	txtEmail_Us.setText("");
+    	txtTelefono_Us.setText("");
+    	cmbSocio.setValue(null);
+    	rdbtnPatron_Us.setDisable(true);
     }
 
 	@Override
@@ -620,6 +767,13 @@ public class InterfazProyectoController implements Initializable {
 		clmFechaSalida_Sal.setCellValueFactory(new PropertyValueFactory<>("fecha"));
 		clmDestino_Sal.setCellValueFactory(new PropertyValueFactory<>("destino"));
 	
+		txtNombre_Us.setDisable(true);
+    	txtApellidoPaterno_Us.setDisable(true);
+    	txtApellidoMaterno_Us.setDisable(true);
+    	txtEmail_Us.setDisable(true);
+    	txtTelefono_Us.setDisable(true);
+    	cmbSocio.setDisable(true);
+    	rdbtnPatron_Us.setDisable(true);
 		
 	}
     
