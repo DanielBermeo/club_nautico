@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="315.0" prefWidth="398.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controller.CrearEntradaController">
+   <children>
+      <Pane layoutX="-200.0" layoutY="-210.0" prefHeight="261.0" prefWidth="398.0" style="-fx-background-color: #91C2F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="17.0" prefWidth="224.0" text="Registrar Llegada de Barco">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="56.0" text="Matricula" />
+            <Label layoutX="270.0" layoutY="56.0" text="Numero de Amarre" />
+            <ComboBox fx:id="cmbAmarre" layoutX="270.0" layoutY="73.0" prefHeight="25.0" prefWidth="102.0" />
+            <Label layoutX="14.0" layoutY="155.0" text="Fecha de llegada">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="186.0" text="Día" />
+            <Label layoutX="126.0" layoutY="186.0" text="Mes" />
+            <Label layoutX="238.0" layoutY="186.0" text="Año" />
+            <ComboBox fx:id="cmbDia" layoutX="14.0" layoutY="211.0" prefHeight="25.0" prefWidth="104.0" />
+            <ComboBox fx:id="cmbMes" layoutX="126.0" layoutY="211.0" prefHeight="25.0" prefWidth="104.0" />
+            <ComboBox fx:id="cmbAno" layoutX="238.0" layoutY="211.0" prefHeight="25.0" prefWidth="146.0" />
+            <Button fx:id="btnRegistrar" layoutX="282.0" layoutY="260.0" mnemonicParsing="false" onAction="#eventRegistrar" prefHeight="25.0" prefWidth="91.0" text="Registrar" />
+            <Button fx:id="btnCancelar" layoutX="184.0" layoutY="260.0" mnemonicParsing="false" onAction="#aventCancelar" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #F4D9D9; -fx-border-color: #F5A7A7;" text="Cancelar" />
+            <Button fx:id="btnRegAmarre" layoutX="259.0" layoutY="115.0" mnemonicParsing="false" onAction="#RegistrarAmarre" prefHeight="25.0" prefWidth="124.0" text="Registrar Amarre" />
+            <ComboBox fx:id="cmbMatricula" layoutX="14.0" layoutY="73.0" prefHeight="25.0" prefWidth="231.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

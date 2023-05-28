@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="306.0" prefWidth="394.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="fes.aragon.controller.AgregarAmarreController">
+   <children>
+      <Pane layoutX="69.0" layoutY="14.0" prefHeight="306.0" prefWidth="438.0" style="-fx-background-color: #91C2F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Registrar Amarre">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="47.0" text="Numero de Amarre" />
+            <Label layoutX="14.0" layoutY="198.0" text="Cuota" />
+            <TextField fx:id="txtCuota" layoutX="14.0" layoutY="215.0" prefHeight="25.0" prefWidth="367.0" />
+            <Button fx:id="btnCancelar" layoutX="195.0" layoutY="265.0" mnemonicParsing="false" onAction="#aventCancelar" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #F4D9D9; -fx-border-color: #F5A7A7;" text="Cancelar" />
+            <Button fx:id="btnRegistrar" layoutX="293.0" layoutY="265.0" mnemonicParsing="false" onAction="#eventRegistrar" prefHeight="25.0" prefWidth="91.0" text="Registrar" />
+            <TextField fx:id="txtAmarre" layoutX="14.0" layoutY="64.0" prefHeight="25.0" prefWidth="358.0" />
+         </children>
+      </Pane>
+      <ComboBox fx:id="cmbAno" layoutX="238.0" layoutY="157.0" prefHeight="25.0" prefWidth="146.0" />
+      <ComboBox fx:id="cmbMes" layoutX="126.0" layoutY="157.0" prefHeight="25.0" prefWidth="104.0" />
+      <ComboBox fx:id="cmbDia" layoutX="14.0" layoutY="157.0" prefHeight="25.0" prefWidth="104.0" />
+      <Label layoutX="238.0" layoutY="132.0" text="Año" />
+      <Label layoutX="126.0" layoutY="132.0" text="Mes" />
+      <Label layoutX="14.0" layoutY="132.0" text="Día" />
+      <Label layoutX="14.0" layoutY="101.0" text="Fecha de registro">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

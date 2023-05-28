@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="600.0" style="-fx-border-color: black; -fx-border-style: solid;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controller.InterfazProyectoController">
+	<tabs>
+		<Tab style="-fx-background-color: #D9E7F4;" text="Usuarios">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="600.0" style="-fx-background-color: #D9E7F4;">
+					<children>
+						<TextField fx:id="txtBuscar_Us" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="290.0" text="Buscar ..." />
+						<ComboBox fx:id="cmbRubroBusqueda_Us" layoutX="314.0" layoutY="25.0" prefHeight="25.0" prefWidth="147.0" promptText="Rubro_busqueda" />
+						<Button fx:id="btnBuscar_Us" layoutX="488.0" layoutY="38.0" mnemonicParsing="false" onAction="#eventoBuscar_Us" prefHeight="11.0" prefWidth="89.0" text="Buscar" />
+						<TableView fx:id="tblTabla_Us" layoutX="14.0" layoutY="66.0" prefHeight="149.0" prefWidth="563.0">
+							<columns>
+								<TableColumn fx:id="clmNombre_Us" prefWidth="248.0" text="Nombre" />
+								<TableColumn fx:id="clmTelefono_Us" prefWidth="90.0" text="Telefono" />
+								<TableColumn fx:id="clmEmail_Us" prefWidth="75.0" text="Email" />
+								<TableColumn fx:id="clmSocio_Us" prefWidth="75.0" text="Socio" />
+								<TableColumn fx:id="clmPatron_Us" prefWidth="75.0" text="Patron" />
+							</columns>
+						</TableView>
+						<Button fx:id="btnAgregarNuevo_Us" layoutX="14.0" layoutY="227.0" mnemonicParsing="false" onAction="#eventoAgregarNuevo_Us" prefHeight="25.0" prefWidth="131.0" text="Agregar Nuevo" />
+						<Button fx:id="btnSeleccionar_Us" layoutX="448.0" layoutY="227.0" mnemonicParsing="false" onAction="#eventoSeleccionar_Us" prefHeight="25.0" prefWidth="132.0" text="Seleccionar" />
+						<Label layoutX="14.0" layoutY="260.0" prefHeight="27.0" prefWidth="195.0" text="Modificar Seleccionado">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+						<Label layoutX="14.0" layoutY="296.0" text="Nombre" />
+						<TextField fx:id="txtNombre_Us" layoutX="14.0" layoutY="313.0" prefHeight="25.0" prefWidth="181.0" />
+						<TextField fx:id="txtApellidoPaterno_Us" layoutX="210.0" layoutY="313.0" prefHeight="25.0" prefWidth="181.0" />
+						<Label layoutX="209.0" layoutY="296.0" text="Apellido Paterno" />
+						<TextField fx:id="txtApellidoMaterno_Us" layoutX="411.0" layoutY="313.0" prefHeight="25.0" prefWidth="181.0" />
+						<Label layoutX="411.0" layoutY="296.0" text="Apellido Materno" />
+						<Label layoutX="14.0" layoutY="349.0" text="Email" />
+						<TextField fx:id="txtEmail_Us" layoutX="15.0" layoutY="366.0" prefHeight="25.0" prefWidth="181.0" />
+						<Label layoutX="205.0" layoutY="345.0" text="Telefono" />
+						<TextField fx:id="txtTelefono_Us" layoutX="206.0" layoutY="362.0" prefHeight="25.0" prefWidth="181.0" />
+						<Button fx:id="btnEliminarUsuario" layoutX="17.0" layoutY="401.0" mnemonicParsing="false" onAction="#eventoEliminarUsuario" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #F4D9D9; -fx-border-color: #F5A7A7;" text="ELIMINAR USUARIO" />
+						<Button fx:id="btnGuardar_Us" layoutX="461.0" layoutY="401.0" mnemonicParsing="false" onAction="#eventoGuardar_Us" prefHeight="25.0" prefWidth="124.0" text="Guardar Cambios" />
+						<RadioButton fx:id="rdbtnPatron_Us" layoutX="413.0" layoutY="379.0" mnemonicParsing="false" onAction="#eventoPatron_Us" text="Patron" />
+						<Button fx:id="btnVerTodos_Us" layoutX="488.0" layoutY="2.0" mnemonicParsing="false" onAction="#eventoVerTodos_Us" prefHeight="11.0" prefWidth="89.0" text="Ver Todos" />
+                  <ComboBox fx:id="cmbSocio" layoutX="413.0" layoutY="345.0" prefWidth="150.0" promptText="Socio" />
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		<Tab style="-fx-background-color: #AED6F1;" text="Barcos">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="600.0" style="-fx-background-color: #AED6F1;">
+					<children>
+						<TextField fx:id="txtBuscar_Bar" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="290.0" text="Buscar ..." />
+						<ComboBox fx:id="cmbRubroBusqueda_Bar" layoutX="314.0" layoutY="25.0" prefHeight="25.0" prefWidth="147.0" promptText="Rubro_busqueda" />
+						<Button fx:id="btnVerTodos_Bar" layoutX="488.0" layoutY="2.0" mnemonicParsing="false" onAction="#eventoVerTodos_Bar" prefHeight="11.0" prefWidth="89.0" text="Ver Todos" />
+						<TableView fx:id="tblBarcos" layoutX="14.0" layoutY="66.0" prefHeight="149.0" prefWidth="563.0">
+							<columns>
+								<TableColumn fx:id="clmNombre_Bar" prefWidth="206.0" text="Nombre" />
+								<TableColumn fx:id="clmMatricula_Bar" prefWidth="132.0" text="Matricula" />
+								<TableColumn fx:id="clmPatron_Bar" prefWidth="109.0" text="Patron" />
+								<TableColumn fx:id="clmDueño_Bar" prefWidth="115.0" text="Dueño" />
+							</columns>
+						</TableView>
+						<Button fx:id="btnAgregarNuevo_Bar" layoutX="14.0" layoutY="227.0" mnemonicParsing="false" onAction="#eventoAgregarNuevo_Bar" prefHeight="25.0" prefWidth="131.0" text="Agregar Nuevo" />
+						<Button fx:id="btnSeleccionar_Bar" layoutX="448.0" layoutY="227.0" mnemonicParsing="false" onAction="#eventoSeleccionar_Bar" prefHeight="25.0" prefWidth="132.0" text="Seleccionar" />
+						<Label layoutX="14.0" layoutY="260.0" prefHeight="27.0" prefWidth="195.0" text="Modificar Seleccionado">
+							<font>
+								<Font size="18.0" />
+							</font>
+						</Label>
+						<Label layoutX="14.0" layoutY="296.0" text="Nombre" />
+						<TextField fx:id="txtNombre_Bar" layoutX="14.0" layoutY="313.0" prefHeight="25.0" prefWidth="275.0" />
+						<TextField fx:id="txtMatricula_Bar" layoutX="315.0" layoutY="314.0" prefHeight="25.0" prefWidth="237.0" />
+						<Label layoutX="314.0" layoutY="297.0" text="Matricula" />
+						<Button fx:id="btnEliminarBarco_Bar" layoutX="17.0" layoutY="401.0" mnemonicParsing="false" onAction="#eventoEliminarBarco" prefHeight="25.0" prefWidth="180.0" style="-fx-background-color: #F4D9D9; -fx-border-color: #F5A7A7;" text="ELIMINAR BARCO" />
+						<Button fx:id="btnGuardarCambios_Bar" layoutX="461.0" layoutY="401.0" mnemonicParsing="false" onAction="#eventoGuardarCambios_Bar" prefHeight="25.0" prefWidth="124.0" text="Guardar Cambios" />
+						<Button fx:id="btnBuscar_Bar" layoutX="488.0" layoutY="38.0" mnemonicParsing="false" onAction="#eventoBuscar_Bar" prefHeight="11.0" prefWidth="89.0" text="Buscar" />
+						<ComboBox fx:id="cmbPatron_Bar" layoutX="13.0" layoutY="364.0" prefHeight="25.0" prefWidth="278.0" />
+						<ComboBox fx:id="cmbDueño_Bar" layoutX="315.0" layoutY="364.0" prefHeight="25.0" prefWidth="278.0" />
+						<Label layoutX="17.0" layoutY="347.0" text="Patron" />
+						<Label layoutX="315.0" layoutY="347.0" text="Dueño" />
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		<Tab style="-fx-background-color: #91C2F3;" text="Entradas">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="600.0" style="-fx-background-color: #91C2F3;">
+					<children>
+						<TextField fx:id="txtBuscar_Ent" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="165.0" text="Buscar ..." />
+						<ComboBox fx:id="cmbRubroBusqueda_Ent" layoutX="186.0" layoutY="26.0" prefHeight="25.0" prefWidth="134.0" promptText="Rubro_busqueda" />
+						<Button fx:id="btnVerTodos_Ent" layoutX="488.0" layoutY="2.0" mnemonicParsing="false" onAction="#eventoVerTodos_Ent" prefHeight="11.0" prefWidth="89.0" text="Ver Todos" />
+						<TableView fx:id="tblEntradas" layoutX="14.0" layoutY="76.0" prefHeight="307.0" prefWidth="563.0">
+							<columns>
+								<TableColumn fx:id="clmMatricula_Ent" prefWidth="158.0" text="Matricula" />
+								<TableColumn fx:id="clmFechaLlegada_Ent" prefWidth="268.0" text="Fecha llegada" />
+								<TableColumn fx:id="clmNumeroAmarre_Ent" prefWidth="136.0" text="Numero de amarre" />
+							</columns>
+						</TableView>
+						<Button fx:id="btnCrearEntrada" layoutX="14.0" layoutY="395.0" mnemonicParsing="false" onAction="#eventoCrearEntrada" prefHeight="25.0" prefWidth="131.0" text="Crear Entrada" />
+						<Button fx:id="btnLimpiarBusqueda" layoutX="445.0" layoutY="395.0" mnemonicParsing="false" onAction="#eventoLimpiarBusqueda" prefHeight="25.0" prefWidth="132.0" text="Limpiar busqueda" />
+						<Button fx:id="btnBuscar_Ent" layoutX="488.0" layoutY="38.0" mnemonicParsing="false" onAction="#eventoBuscar_Ent" prefHeight="11.0" prefWidth="89.0" text="Buscar" />
+						<ComboBox fx:id="cmbFecha_Ent" layoutX="328.0" layoutY="26.0" prefHeight="25.0" prefWidth="139.0" promptText="Seleccionar fecha" />
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+		<Tab style="-fx-background-color: #85A4D6;" text="Salidas">
+			<content>
+				<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="491.0" prefWidth="600.0" style="-fx-background-color: #85A4D6;">
+					<children>
+						<TextField fx:id="txtBuscar_Sal" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="165.0" text="Buscar ..." />
+						<ComboBox fx:id="cmbRubroBusqueda_Sal" layoutX="186.0" layoutY="26.0" prefHeight="25.0" prefWidth="134.0" promptText="Rubro_busqueda" />
+						<Button fx:id="btnVerTodos_Sal" layoutX="488.0" layoutY="2.0" mnemonicParsing="false" onAction="#eventoVerTodos_Sal" prefHeight="11.0" prefWidth="89.0" text="Ver Todos" />
+						<TableView fx:id="tblSalidas" layoutX="14.0" layoutY="76.0" prefHeight="307.0" prefWidth="563.0">
+							<columns>
+								<TableColumn fx:id="clmMatricula_Sal" prefWidth="158.0" text="Matricula" />
+								<TableColumn fx:id="clmFechaSalida_Sal" prefWidth="189.0" text="Fecha de salida" />
+								<TableColumn fx:id="clmDestino_Sal" prefWidth="215.0" text="Destino" />
+							</columns>
+						</TableView>
+						<Button fx:id="btnRegistrarSalida" layoutX="14.0" layoutY="395.0" mnemonicParsing="false" onAction="#eventoRegistrarSalida" prefHeight="25.0" prefWidth="131.0" text="Registrar Salida" />
+						<Button fx:id="btnLimpiarBusqueda_Sal" layoutX="445.0" layoutY="395.0" mnemonicParsing="false" onAction="#eventoLimpiarBusqueda_Sal" prefHeight="25.0" prefWidth="132.0" text="Limpiar busqueda" />
+						<Button fx:id="btnBuscar_Sal" layoutX="488.0" layoutY="38.0" mnemonicParsing="false" onAction="#eventoBuscar_Sal" prefHeight="11.0" prefWidth="89.0" text="Buscar" />
+						<ComboBox fx:id="cmbFecha_Sal" layoutX="328.0" layoutY="26.0" prefHeight="25.0" prefWidth="139.0" promptText="Seleccionar fecha" />
+					</children>
+				</AnchorPane>
+			</content>
+		</Tab>
+	</tabs>
+</TabPane>

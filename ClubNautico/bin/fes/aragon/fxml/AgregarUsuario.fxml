@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="274.0" prefWidth="526.0" style="-fx-background-color: #D9E7F4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fes.aragon.controller.AgregarUsuarioController">
+   <children>
+      <Pane layoutX="-105.0" prefHeight="275.0" prefWidth="467.0" AnchorPane.bottomAnchor="228.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="20.0" layoutY="10.0" prefHeight="45.0" prefWidth="252.0" text="Agregar Nuevo Usuario">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtNombre" layoutX="26.0" layoutY="87.0" prefHeight="25.0" prefWidth="486.0" />
+            <Label layoutX="26.0" layoutY="64.0" text="Nombre" />
+            <Label layoutX="26.0" layoutY="117.0" text="Apellido Paterno" />
+            <Label layoutX="276.0" layoutY="116.0" text="Apellido Materno" />
+            <TextField fx:id="txtApPat" layoutX="26.0" layoutY="134.0" prefHeight="25.0" prefWidth="233.0" />
+            <TextField fx:id="txtApMat" layoutX="276.0" layoutY="133.0" prefHeight="25.0" prefWidth="233.0" />
+            <Label layoutX="26.0" layoutY="169.0" text="Telefono" />
+            <Label layoutX="276.0" layoutY="168.0" text="Correo Electronico" />
+            <TextField fx:id="txtTelefono" layoutX="26.0" layoutY="186.0" prefHeight="25.0" prefWidth="233.0" />
+            <TextField fx:id="txtEmail" layoutX="276.0" layoutY="185.0" prefHeight="25.0" prefWidth="233.0" />
+            <Button fx:id="btnCancelar" layoutX="252.0" layoutY="225.0" mnemonicParsing="false" onAction="#evntCancelarInsercion" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #F4D9D9; -fx-border-color: #F5A7A7;" text="Cancelar" />
+            <Button fx:id="btnAgregar" layoutX="368.0" layoutY="225.0" mnemonicParsing="false" onAction="#eventAgregarUsuario" prefHeight="25.0" prefWidth="92.0" text="Agregar" />
+         </children>
+      </Pane>
+      <ComboBox fx:id="cmbSocio" layoutX="26.0" layoutY="224.0" prefHeight="25.0" prefWidth="130.0" promptText="Socio" />
+      <RadioButton fx:id="rbtnPatron" layoutX="171.0" layoutY="228.0" mnemonicParsing="false" text="Patron" />
+   </children>
+</AnchorPane>
