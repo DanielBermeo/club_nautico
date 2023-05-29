@@ -39,7 +39,7 @@ CREATE TABLE socios(
 
 CREATE TABLE patrones(
     id_ptn              INTEGER NOT NULL AUTO_INCREMENT,
-    id_sco              INTEGER,
+    id_sco              INTEGER NOT NULL,
     id_cto              INTEGER NOT NULL,
     
     PRIMARY KEY (id_ptn),
